@@ -1,0 +1,9 @@
+# neovim
+export PATH="$HOME/nvim/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+alias vim="nvim"
+
+# Homebrew
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
