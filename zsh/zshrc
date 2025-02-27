@@ -5,5 +5,16 @@ alias vim="nvim"
 # Homebrew
 export PATH="/opt/homebrew/bin:$PATH"
 
-# Cargo
-export PATH="$HOME/.cargo/bin:$PATH"
+# Go
+export PATH="/usr/local/go/bin:$PATH"
+
+# C
+# Helper for running C code
+c() {
+    if [ -n "$1" ]
+    then
+        clang "$1" && ./a.out
+    else
+        echo "Expected .c file as argument"
+    fi
+}
