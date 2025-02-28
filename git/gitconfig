@@ -1,3 +1,46 @@
 [user]
-	name = nolinmcfarland
+	name = Nolin McFarland
+    username = nolinmcfarland
 	email = nolin.mcfarland@icloud.com
+
+[core]
+    editor = nvim
+    excludesfile = /Users/nolinmcfarland/.gitignore
+
+[init]
+    defaultBranch = main
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[alias]
+    # Status
+    s = status --short
+    st = status
+    
+    # Checkout
+    co = checkout
+    cp = checkout --patch
+    nb = checkout -b
+    
+    # Branching
+    b = branch
+    db = branch -D
+
+    # Committing
+    ci = commit --verbose
+
+    # Adding
+    aa = add --all
+    ap = add --patch
+    ai = add --interactive
+
+    # Diffing
+    df = diff -w
+    staged = diff --staged
+    
+    # Other
+    whoami = var GIT_AUTHOR_IDENT

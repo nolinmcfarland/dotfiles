@@ -1,20 +1,13 @@
-# neovim
-export PATH="$HOME/nvim/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# Neovim
 alias vim="nvim"
 
-# Homebrew
-export PATH="/opt/homebrew/bin:$PATH"
-
-# Go
-export PATH="/usr/local/go/bin:$PATH"
-
-# C
-# Helper for running C code
+# C Compiler Helper
+# Shorthand for compiling and running C code
 c() {
-    if [ -n "$1" ]
-    then
-        clang "$1" && ./a.out
-    else
-        echo "Expected .c file as argument"
+    if [ -z "$1" ]; then
+        echo "Usage: c [.c file] < [input]"
+        return 1
     fi
+
+    clang "$1" && ./a.out
 }

@@ -1,0 +1,67 @@
+#!/bin/bash
+
+DOT=$HOME/dotfiles
+CONFIG=$HOME/.config
+
+info() {
+    echo "👉 $1"
+}
+
+success() {
+    echo "✅ $1"
+}
+
+symlink_dotfiles() {
+    info "Symlinking dotfiles..."
+
+    mkdir -p "$CONFIG"
+    ln -sf "$DOT/ghostty" "$CONFIG"
+    ln -sf "$DOT/nvim" "$CONFIG"
+
+    ln -sf "$DOT/zsh/zshrc" "$HOME/.zshrc"
+    ln -sf "$DOT/git/gitconfig" "$HOME/.gitconfig"
+    ln -sf "$DOT/git/gitignore" "$HOME/.gitignore"
+
+    for theme in "$DOT/xcode/themes"/*; do
+        if [ -f "$theme" ]; then
+            ln -sf "$theme" "$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes"
+        fi
+    done
+
+    success "Dotfiles have been symlinked!"
+}
+
+install_homebrew() {
+    info "Installing Homebrew..."
+
+    if ! command -v brew &> /dev/null; then
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+
+        success "Homebrew has been installed!"
+    else
+        success "Homebrew is already installed."
+        brew update
+    fi
+}
+
+brew_install() {
+    local package=$1
+    info "Installing $package..."
+
+    if ! command -v "$package" &> /dev/null; then
+        brew install "$package"
+        success "$package has been installed!"
+    else
+        success "$package is already installed."
+    fi
+}
+
+# Main install flow
+
+symlink_dotfiles
+install_homebrew
+brew_install "node"
+brew_install "neovim"
+echo "🎉 All tools are installed and up to date!"
