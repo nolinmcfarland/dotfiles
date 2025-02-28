@@ -41,6 +41,10 @@
     # Diffing
     df = diff -w
     staged = diff --staged
+
+    # Logging
+    lo = log --oneline
+    lg = log --oneline --graph
     
     # Other
     whoami = var GIT_AUTHOR_IDENT
