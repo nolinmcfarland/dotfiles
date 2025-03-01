@@ -9,5 +9,6 @@ c() {
         return 1
     fi
 
-    clang "$1" && ./a.out
+    output="${1%.c}"
+    clang "$1" -o "$output" && ./"$output"
 }
