@@ -65,5 +65,5 @@ brew_install() {
 symlink_dotfiles
 install_homebrew
 brew_install "node"
-brew_install "neovim"
+brew_install "nvim"
 echo "🎉 All tools are installed and up to date!"
