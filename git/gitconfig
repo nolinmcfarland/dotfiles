@@ -1,7 +1,7 @@
 [user]
-	name = Nolin McFarland
+    name = Nolin McFarland
     username = nolinmcfarland
-	email = nolin.mcfarland@icloud.com
+    email = nolin.mcfarland@icloud.com
 
 [core]
     editor = nvim
@@ -11,15 +11,15 @@
     defaultBranch = main
 
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
 
 [alias]
     # Status
-    s = status --short
     st = status
+    s = status --short
     
     # Checkout
     co = checkout
