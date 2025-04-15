@@ -1,7 +1,7 @@
 [user]
     name = Nolin McFarland
     username = nolinmcfarland
-    email = nolin.mcfarland@icloud.com
+	email = nolin.mcfarland@icloud.com
 
 [core]
     editor = nvim
@@ -9,6 +9,25 @@
 
 [init]
     defaultBranch = main
+
+[merge]
+    tool = diffview
+
+[mergetool]
+    prompt = false
+    keepBackup = false
+
+[mergetool "diffview"]
+    cmd = nvim -n -c "DiffviewOpen" "$MERGE"
+
+[diff]
+    tool = diffview
+
+[difftool "diffview"]
+    cmd = nvim -n -c "DiffviewOpen"
+
+[push]
+	autoSetupRemote = true
 
 [filter "lfs"]
     process = git-lfs filter-process
@@ -18,33 +37,68 @@
 
 [alias]
     # Status
-    st = status
-    s = status --short
+    s = status -sb
     
     # Checkout
     co = checkout
-    cp = checkout --patch
     nb = checkout -b
+    go = !sh -c '[[ "$(git branch | grep -i $1 | wc -l)" -eq "1" ]] && git checkout "$(git branch | grep -i $1 | tr -d [:space:])" || echo "\\\"$1\\\" matches zero or multiple branches."' -
     
-    # Branching
+    # Cherrypick
+    cp = cherry-pick
+
+    # Stash
+    ss = stash save
+    sp = stash pop
+    sl = stash list
+    sa = stash apply
+    sd = stash drop
+
+    # Branch
     b = branch
     db = branch -D
+    cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard.\""
+    br = for-each-ref --sort=-committerdate refs/heads/ --format='* %(color:bold brightmagenta)%(refname:short) %(color:reset)%(subject) %(color:dim blue)(%(authorname), %(committerdate:relative))%(color:reset)'
 
-    # Committing
-    ci = commit --verbose
-
-    # Adding
+    # Add
     aa = add --all
     ap = add --patch
     ai = add --interactive
 
-    # Diffing
-    df = diff -w
-    staged = diff --staged
+    # Commit
+    c = commit --verbose
+    ca = commit --amend --no-edit
 
-    # Logging
-    lo = log --oneline
-    lg = log --oneline --graph
+    # Push
+    p = push
+    pf = push --force-with-lease
+
+    # Pull
+    pl = pull --rebase --autostash
+ 
+    # Rebase
+    r = rebase
+    ri = rebase --interactive
+    rc = rebase --continue
+    ra = rebase --abort
+    rs = rebase --skip
+
+    # Diff
+    d = diff -w
+    dt = difftool
+    staged = diff --staged
     
-    # Other
-    whoami = var GIT_AUTHOR_IDENT
+    # Merge
+    m = merge
+    mt = mergetool
+
+    # Log
+    l = log --pretty=format:'%C(bold brightmagenta)%h%C(reset)%C(bold brightyellow)%d%C(reset) %s %C(dim blue)(%an, %cr)%C(reset)' --abbrev-commit --date=relative
+    lg = l --graph
+    
+    # Misc
+    undo = reset --mixed HEAD~1
+    unstage = restore --staged
+    fix = !git aa && git commit --fixup HEAD
+    squash = ri --autosquash
+    alias = !git config -l | grep alias | cut -c 7-
