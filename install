@@ -18,6 +18,7 @@ symlink_dotfiles() {
     mkdir -p "$CONFIG"
     ln -sf "$DOT/ghostty" "$CONFIG"
     ln -sf "$DOT/nvim" "$CONFIG"
+    ln -sf "$DOT/starship/starship.toml" "$CONFIG/starship.toml"
 
     ln -sf "$DOT/zsh/zshrc" "$HOME/.zshrc"
     ln -sf "$DOT/git/gitconfig" "$HOME/.gitconfig"
@@ -78,5 +79,6 @@ symlink_dotfiles
 install_homebrew
 brew_install "node"
 brew_install "nvim"
+brew_install "starship"
 install_fonts
 echo "🎉 All tools are installed and up to date!"

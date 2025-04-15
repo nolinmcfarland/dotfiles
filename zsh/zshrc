@@ -7,6 +7,9 @@ touch ~/.hushlogin
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Starship.rs
+eval "$(starship init zsh)"
+
 # Neovim
 alias nv="nvim"
 
