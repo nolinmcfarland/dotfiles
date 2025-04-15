@@ -1,5 +1,14 @@
+# Source local aliases
+source ~/.zshrc_local
+
+# Hush login
+touch ~/.hushlogin
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Neovim
-alias vim="nvim"
+alias nv="nvim"
 
 # C Compiler Helper
 # Shorthand for compiling and running C code
@@ -12,3 +21,4 @@ c() {
     output="${1%.c}"
     clang "$1" -o "$output" && ./"$output"
 }
+
