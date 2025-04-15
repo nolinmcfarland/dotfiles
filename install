@@ -2,7 +2,6 @@
 
 DOT=$HOME/dotfiles
 CONFIG=$HOME/.config
-XCTHEMES=$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
 
 info() {
     echo "👉 $1"
@@ -22,13 +21,6 @@ symlink_dotfiles() {
     ln -sf "$DOT/zsh/zshrc" "$HOME/.zshrc"
     ln -sf "$DOT/git/gitconfig" "$HOME/.gitconfig"
     ln -sf "$DOT/git/gitignore" "$HOME/.gitignore"
-
-    mkdir -p "$XCTHEMES"
-    for theme in "$DOT/xcode/themes"/*; do
-        if [ -f "$theme" ]; then
-            ln -sf "$theme" "$XCTHEMES"
-        fi
-    done
 
     success "Dotfiles have been symlinked!"
 }
