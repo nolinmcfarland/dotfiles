@@ -6,7 +6,7 @@ return {
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
-                "c", "lua", "swift", "vimdoc"
+                "c", "javascript", "typescript", "lua", "swift", "vimdoc"
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -23,6 +23,7 @@ return {
             highlight = {
                 -- 'false' will disable for the whole extension
                 enable = true,
+                use_languagetree = true,
 
                 disable = function(lang, buf)
                     local max_filesize = 100 * 1024 -- 100 KB

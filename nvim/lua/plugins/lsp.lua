@@ -17,7 +17,7 @@ return {
 
         require('mason').setup()
         require('mason-lspconfig').setup({
-            ensure_installed = { 'lua_ls' },
+            ensure_installed = { 'lua_ls', 'ts_ls' },
             handlers = {
                 function(server_name)
                     lspconfig[server_name].setup({
@@ -99,7 +99,7 @@ return {
                 ['<CR>'] = cmp.mapping.confirm({select = false}),
 
                 -- Jump to next placeholder in snippet
-                ['<C-f>'] = cmp.mapping(function(fallback)
+                ['<C-w>'] = cmp.mapping(function(fallback)
                     if luasnip.jumpable(1) then
                         luasnip.jump(1)
                     else
