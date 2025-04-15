@@ -1,3 +1,6 @@
-# background-opacity = 0.95
-# background-blur = true
-# background = 202020
+font-size = 14
+font-family = FiraCode
+#background-opacity = 0.8
+#background-blur = true
+background = 282a36
+#window-padding-x = 8
