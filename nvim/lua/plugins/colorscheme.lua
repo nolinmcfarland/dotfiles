@@ -7,16 +7,26 @@ local colorschemes = {
     nightfox = {
         source = 'EdenEast/nightfox.nvim',
         name = 'nightfox',
-        scheme = 'terafox'
+        scheme = 'nightfox'
     },
     rosepine = {
         source = 'rose-pine/neovim',
         name = 'rose-pine',
         scheme = 'rose-pine'
     },
+    github = {
+        source = 'projekt0n/github-nvim-theme',
+        name = 'github-theme',
+        scheme = 'github_dark_dimmed'
+    };
+    dracula = {
+        source = 'Mofiqul/dracula.nvim',
+        name = 'dracula',
+        scheme = 'dracula'
+    }
 }
 
-local colorscheme = colorschemes.rosepine
+local colorscheme = colorschemes.catppuccin
 local hide_background = false
 
 return {
