@@ -1,3 +1,5 @@
+require("config.global")
+require("config.options")
+require("config.keymap")
+require("config.autocmd")
 require("config.lazy")
-require("config.remap")
-require("config.set")
