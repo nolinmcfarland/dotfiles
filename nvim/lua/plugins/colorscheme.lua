@@ -18,15 +18,20 @@ local colorschemes = {
         source = 'projekt0n/github-nvim-theme',
         name = 'github-theme',
         scheme = 'github_dark_dimmed'
-    };
+    },
     dracula = {
         source = 'Mofiqul/dracula.nvim',
         name = 'dracula',
         scheme = 'dracula'
+    },
+    tokyonight = {
+        source = 'folke/tokyonight.nvim',
+        name = 'tokyonight',
+        scheme = 'tokyonight-moon'
     }
 }
 
-local colorscheme = colorschemes.catppuccin
+local colorscheme = colorschemes.tokyonight
 local hide_background = false
 
 return {
