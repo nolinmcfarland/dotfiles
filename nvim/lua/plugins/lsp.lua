@@ -42,10 +42,7 @@ return {
 
         -- Sourcekit
         lspconfig.sourcekit.setup({
-            capabilities = default_capabilities,
-            root_dir = function(fname)
-                return lspconfig.util.root_pattern('.xcodeproj', 'Package.swift', '.git')(fname) or vim.fn.getcwd()
-            end
+            capabilities = default_capabilities
         })
 
         -- Setup cmp
