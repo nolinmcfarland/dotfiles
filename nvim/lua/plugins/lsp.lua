@@ -1,206 +1,135 @@
 return {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'L3MON4D3/LuaSnip',
-        'saadparwaiz1/cmp_luasnip',
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim'
-    },
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = function()
-        local lspconfig = require('lspconfig')
-        local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
+	"neovim/nvim-lspconfig",
+	dependencies = {
+		{ "williamboman/mason.nvim", opts = {} },
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "j-hui/fidget.nvim", opts = {} },
+		"saghen/blink.cmp",
+	},
+	config = function()
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			callback = function(event)
+				local map = function(keys, func, desc, mode)
+					mode = mode or "n"
+					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+				end
 
-        require('mason').setup()
-        require('mason-lspconfig').setup({
-            ensure_installed = { 'lua_ls', 'ts_ls' },
-            handlers = {
-                function(server_name)
-                    lspconfig[server_name].setup({
-                        capabilities = default_capabilities
-                    })
-                end,
-                ['lua_ls'] = function()
-                    lspconfig.lua_ls.setup({
-                        capabilities = default_capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "LuaJIT" },
-                                diagnostics = {
-                                    globals = { 'vim' }
-                                }
-                            }
-                        }
-                    })
-                end,
-            }
-        })
+				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
 
-        -- Sourcekit
-        lspconfig.sourcekit.setup({
-            capabilities = default_capabilities
-        })
+				map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 
-        -- Setup cmp
-        vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-        local cmp = require('cmp')
-        local luasnip = require('luasnip')
-        local select_opts = { behavior = cmp.SelectBehavior.Select }
+				map("grr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
-        cmp.setup({
-            snippet = {
-                expand = function(args)
-                    luasnip.lsp_expand(args.body)
-                end
-            },
-            sources = {
-                { name = 'path' }, -- Autocomplete file paths
-                { name = 'nvim_lsp', keyword_length = 1 }, -- Show suggestions from LSP response
-                { name = 'buffer', keyword_length = 3 }, -- Show suggestions from current buffer
-                { name = 'luasnip', keyword_length = 2 }, -- Show available snippets and expand when selected
-            },
-            window = {
-                documentation = cmp.config.window.bordered()
-            },
-            formatting = {
-                fields = { 'menu', 'abbr', 'kind' },
-                format = function(entry, item)
-                    local menu_icon = {
-                        nvim_lsp = 'L',
-                        luasnip = 'S',
-                        buffer = 'B',
-                        path = 'P'
-                    }
+				map("gri", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
-                    item.menu = menu_icon[entry.source.name]
-                    return item
-                end
-            },
-            mapping = {
-                -- 
-                ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
-                ['<Down>'] = cmp.mapping.select_next_item(select_opts),
+				map("grd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
-                ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
-                ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+				map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-                ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                ['<C-d>'] = cmp.mapping.scroll_docs(4),
+				map("gO", require("telescope.builtin").lsp_document_symbols, "Open Document Symbols")
 
-                ['<C-e>'] = cmp.mapping.abort(),
-                ['<C-y>'] = cmp.mapping.confirm({select = true}),
-                ['<CR>'] = cmp.mapping.confirm({select = false}),
+				map("gW", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Open Workspace Symbols")
 
-                -- Jump to next placeholder in snippet
-                ['<C-w>'] = cmp.mapping(function(fallback)
-                    if luasnip.jumpable(1) then
-                        luasnip.jump(1)
-                    else
-                        fallback()
-                    end
-                end, {'i', 's'}),
+				map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
-                -- Jump to previous placeholder in snippet
-                ['<C-b>'] = cmp.mapping(function(fallback)
-                    if luasnip.jumpable(-1) then
-                        luasnip.jump(-1)
-                    else
-                        fallback()
-                    end
-                end, {'i', 's'}),
+				map("[d", vim.diagnostic.goto_prev, "Goto Previous Diagnostic")
 
-                -- Autocomplete with tab
-                ['<Tab>'] = cmp.mapping(function(fallback)
-                    local col = vim.fn.col('.') - 1
+				map("]d", vim.diagnostic.goto_prev, "Goto Next Diagnostic")
 
-                    if cmp.visible() then
-                        cmp.select_next_item(select_opts)
-                    elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-                        fallback()
-                    else
-                        cmp.complete()
-                    end
-                end, {'i', 's'}),
+				local client = vim.lsp.get_client_by_id(event.data.client_id)
+				if client then
+					local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+						buffer = event.buf,
+						group = highlight_augroup,
+						callback = vim.lsp.buf.document_highlight,
+					})
 
-                ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item(select_opts)
-                    else
-                        fallback()
-                    end
-                end, {'i', 's'}),
-            }
-        })
+					vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+						buffer = event.buf,
+						group = highlight_augroup,
+						callback = vim.lsp.buf.clear_references,
+					})
 
-        -- Setup diagnostics
-        vim.diagnostic.config({
-            virtual_text = false,
-            severity_sort = true,
-            float = {
-                border = 'rounded',
-                source = 'always',
-            },
-        })
+					vim.api.nvim_create_autocmd("LspDetach", {
+						group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
+						callback = function(event2)
+							vim.lsp.buf.clear_references()
+							vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
+						end,
+					})
+				end
+			end,
+		})
 
-        local sign = function(opts)
-            vim.fn.sign_define(opts.name, {
-                texthl = opts.name,
-                text = opts.text,
-                numhl = ''
-            })
-        end
+		vim.diagnostic.config({
+			severity_sort = true,
+			float = { border = "rounded", source = "if_many" },
+			underline = { severity = vim.diagnostic.severity.ERROR },
+			signs = vim.g.have_nerd_font and {
+				text = {
+					[vim.diagnostic.severity.ERROR] = "󰅚 ",
+					[vim.diagnostic.severity.WARN] = "󰀪 ",
+					[vim.diagnostic.severity.INFO] = "󰋽 ",
+					[vim.diagnostic.severity.HINT] = "󰌶 ",
+				},
+			} or {},
+			virtual_text = {
+				source = "if_many",
+				spacing = 2,
+				format = function(diagnostic)
+					local diagnostic_message = {
+						[vim.diagnostic.severity.ERROR] = diagnostic.message,
+						[vim.diagnostic.severity.WARN] = diagnostic.message,
+						[vim.diagnostic.severity.INFO] = diagnostic.message,
+						[vim.diagnostic.severity.HINT] = diagnostic.message,
+					}
+					return diagnostic_message[diagnostic.severity]
+				end,
+			},
+		})
 
-        sign({name = 'DiagnosticSignError', text = '✘'})
-        sign({name = 'DiagnosticSignWarn', text = '▲'})
-        sign({name = 'DiagnosticSignHint', text = '⚑'})
-        sign({name = 'DiagnosticSignInfo', text = '»'})
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-        -- Code action bindings
-        vim.api.nvim_create_autocmd('LSPAttach', {
-            desc = 'LSP Actions',
-            callback = function(args)
-                local opts = { buffer = args.buf, silent = true }
+		local servers = {
+			lua_ls = {
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+						diagnostics = {
+							globals = { "vim" },
+							disable = { "missing-fields" },
+						},
+					},
+				},
+			},
+			ts_ls = {},
+		}
 
-                -- Displays hover info about the sybmol under the cursor
-                vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+		local ensure_installed = vim.tbl_keys(servers or {})
+		vim.list_extend(ensure_installed, { "stylua" })
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-                -- Jump to definition
-                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+		local lspconfig = require("lspconfig")
 
-                -- Jump to declaration
-                vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+		require("mason-lspconfig").setup({
+			ensure_installed = {},
+			automatic_installation = false,
+			handlers = {
+				function(server_name)
+					local server = servers[server_name] or {}
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					lspconfig[server_name].setup(server)
+				end,
+			},
+		})
 
-                -- Lists all implementations for the symbol under the cursor
-                vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-
-                -- Jumps to the definition of the type symbol
-                vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
-
-                -- Lists all the references
-                vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-
-                -- Displays a function's signature info
-                vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
-
-                -- Renames all references to the symbol under the cursor
-                vim.keymap.set('n', 'gR', vim.lsp.buf.rename, opts)
-
-                -- Selects a code action available at the cursor position
-                vim.keymap.set('n', '<C-k>', vim.lsp.buf.code_action, opts)
-
-                -- Show diagnostics in a floating window
-                vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
-
-                -- Move to the previous diagnostic
-                vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-
-                -- Move to the next diagnostic
-                vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-            end
-        })
-    end
+		lspconfig.sourcekit.setup({
+			capabilities = capabilities,
+		})
+	end,
 }
