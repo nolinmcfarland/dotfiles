@@ -27,7 +27,7 @@ local colorschemes = {
 	tokyonight = {
 		source = "folke/tokyonight.nvim",
 		name = "tokyonight",
-		scheme = "tokyonight",
+		scheme = "tokyonight-night",
 	},
 }
 
