@@ -94,6 +94,8 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local servers = {
+			clangd = {},
+			gopls = {},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -107,6 +109,7 @@ return {
 					},
 				},
 			},
+			rust_analyzer = {},
 			ts_ls = {},
 		}
 
@@ -130,6 +133,9 @@ return {
 
 		lspconfig.sourcekit.setup({
 			capabilities = capabilities,
+			root_dir = function(fname)
+				return lspconfig.util.root_pattern(".xcodeproj", "Package.swift", ".git")(fname) or vim.fn.getcwd()
+			end,
 		})
 	end,
 }
