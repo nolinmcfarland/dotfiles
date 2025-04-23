@@ -14,7 +14,7 @@ eval "$(starship init zsh)"
 alias nv="nvim"
 
 # xcode-build-server
-alias xbs="xcode-build-server serve"
+alias xbs="xcode-build-server"
 
 # C Compiler Helper
 # Shorthand for compiling and running C code
