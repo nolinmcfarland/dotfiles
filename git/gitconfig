@@ -59,8 +59,10 @@
     db = branch -D
     cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard.\""
     br = for-each-ref --sort=-committerdate refs/heads/ --format='* %(color:bold brightmagenta)%(refname:short) %(color:reset)%(subject) %(color:dim blue)(%(authorname), %(committerdate:relative))%(color:reset)'
+    mb = !git branch -vv | grep ': gone]' | awk '{print $1}'
 
     # Add
+    a = add
     aa = add --all
     ap = add --patch
     ai = add --interactive
