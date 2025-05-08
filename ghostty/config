@@ -1,3 +1,4 @@
-font-size = 14
-font-family = FiraCode
+font-size = 15
+font-family = "FiraCode Nerd Font"
 theme = tokyonight
+keybind = global:ctrl+grave_accent=toggle_quick_terminal

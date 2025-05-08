@@ -58,7 +58,7 @@
     b = branch
     db = branch -D
     cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard.\""
-    br = for-each-ref --sort=-committerdate refs/heads/ --format='* %(color:bold brightmagenta)%(refname:short) %(color:reset)%(subject) %(color:dim blue)(%(authorname), %(committerdate:relative))%(color:reset)'
+    br = for-each-ref --sort=-committerdate refs/heads/ --format='* %(color:green)%(refname:short) %(color:reset)%(subject) %(color:dim blue)(%(authorname), %(committerdate:relative))%(color:reset)'
     mb = !git branch -vv | grep ': gone]' | awk '{print $1}'
 
     # Add
@@ -95,7 +95,7 @@
     mt = mergetool
 
     # Log
-    l = log --pretty=format:'%C(bold brightmagenta)%h%C(reset)%C(bold brightyellow)%d%C(reset) %s %C(dim blue)(%an, %cr)%C(reset)' --abbrev-commit --date=relative
+    l = log --pretty=format:'%C(yellow)%h%C(reset)%C(green)%d%C(reset) %s %C(dim blue)(%an, %cr)%C(reset)' --abbrev-commit --date=relative
     lg = l --graph
     
     # Misc
