@@ -71,7 +71,6 @@ return {
 
 		local servers = {
 			clangd = {},
-			gopls = {},
 			lua_ls = {
 				settings = {
 					Lua = {
