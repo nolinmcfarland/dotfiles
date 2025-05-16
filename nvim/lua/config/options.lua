@@ -8,16 +8,16 @@ vim.opt.wrap = false
 vim.opt.relativenumber = true
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 vim.opt.showmode = false
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.opt.termguicolors = true
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -36,5 +36,5 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Sync OS and vim clipboard
 vim.schedule(function()
-    vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
