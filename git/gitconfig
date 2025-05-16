@@ -97,6 +97,7 @@
     # Log
     l = log --pretty=format:'%C(yellow)%h%C(reset)%C(green)%d%C(reset) %s %C(dim blue)(%an, %cr)%C(reset)' --abbrev-commit --date=relative
     lg = l --graph
+    ls = l --show-signature
     
     # Misc
     undo = reset --mixed HEAD~1
