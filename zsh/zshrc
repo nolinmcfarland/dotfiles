@@ -13,9 +13,6 @@ eval "$(starship init zsh)"
 # Neovim
 alias nv="nvim"
 
-# xcode-build-server
-alias xbs="xcode-build-server"
-
 # C Compiler Helper
 # Shorthand for compiling and running C code
 c() {

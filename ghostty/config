@@ -1,4 +1,5 @@
 font-size = 15
 font-family = "FiraCode Nerd Font"
-theme = tokyonight
+theme = dracula
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
+keybind = shift+enter=text:\n

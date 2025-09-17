@@ -17,7 +17,7 @@ local colorschemes = {
 	github = {
 		source = "projekt0n/github-nvim-theme",
 		name = "github-theme",
-		scheme = "github_dark_dimmed",
+		scheme = "github_dark",
 	},
 	dracula = {
 		source = "Mofiqul/dracula.nvim",
@@ -31,8 +31,8 @@ local colorschemes = {
 	},
 }
 
-local colorscheme = colorschemes.tokyonight
-local hide_background = false
+local colorscheme = colorschemes.github
+local hide_background = true
 
 return {
 	colorscheme.source,
