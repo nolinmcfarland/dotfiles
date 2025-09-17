@@ -60,6 +60,23 @@
     cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard.\""
     br = for-each-ref --sort=-committerdate refs/heads/ --format='* %(color:green)%(refname:short) %(color:reset)%(subject) %(color:dim blue)(%(authorname), %(committerdate:relative))%(color:reset)'
     mb = !git branch -vv | grep ': gone]' | awk '{print $1}'
+    dmb = "!f() { \
+        auto=false; \
+        git mb; \
+        for branch in $(git mb); do \
+            if [ \"$auto\" = true ]; then \
+                git db \"$branch\"; \
+                continue; \
+            fi; \
+            read -p \"\nDelete $branch? (y/N/a) \" ans; \
+            case \"$ans\" in \
+                y|Y) git db \"$branch\" ;; \
+                a|A) auto=true; git db \"$branch\" ;; \
+                *) ;; \
+            esac; \
+        done; \
+        echo \"\nDone and dusted.\"; \
+    }; f"
 
     # Add
     a = add
@@ -97,6 +114,7 @@
     # Log
     l = log --pretty=format:'%C(yellow)%h%C(reset)%C(green)%d%C(reset) %s %C(dim blue)(%an, %cr)%C(reset)' --abbrev-commit --date=relative
     lg = l --graph
+    ls = l --show-signature
     
     # Misc
     undo = reset --mixed HEAD~1
