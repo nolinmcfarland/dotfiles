@@ -70,7 +70,9 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local servers = {
+            basedpyright = {},
 			clangd = {},
+            gopls = {},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -84,7 +86,6 @@ return {
 					},
 				},
 			},
-			rust_analyzer = {},
 			ts_ls = {},
 		}
 
