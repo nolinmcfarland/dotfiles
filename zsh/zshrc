@@ -10,18 +10,3 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Starship.rs
 eval "$(starship init zsh)"
 
-# Neovim
-alias nv="nvim"
-
-# C Compiler Helper
-# Shorthand for compiling and running C code
-c() {
-    if [ -z "$1" ]; then
-        echo "Usage: c [.c file] < [input]"
-        return 1
-    fi
-
-    output="${1%.c}"
-    clang "$1" -o "$output" && ./"$output"
-}
-
