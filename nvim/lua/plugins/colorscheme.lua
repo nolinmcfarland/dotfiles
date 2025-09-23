@@ -29,10 +29,15 @@ local colorschemes = {
 		name = "tokyonight",
 		scheme = "tokyonight-night",
 	},
+    onedark = {
+        source = "navarasu/onedark.nvim",
+        name = "onedark",
+        scheme = "onedark",
+    },
 }
 
-local colorscheme = colorschemes.github
-local hide_background = true
+local colorscheme = colorschemes.onedark
+local hide_background = false
 
 return {
 	colorscheme.source,
