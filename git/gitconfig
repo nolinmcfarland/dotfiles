@@ -1,33 +1,20 @@
 [user]
     name = Nolin McFarland
     username = nolinmcfarland
-	email = nolin.mcfarland@icloud.com
+	email = nolin.mcfarland@gmail.com
 
 [core]
     editor = nvim
     excludesfile = /Users/nolinmcfarland/.gitignore
 
 [init]
-    defaultBranch = main
-
-[merge]
-    tool = diffview
-
-[mergetool]
-    prompt = false
-    keepBackup = false
-
-[mergetool "diffview"]
-    cmd = nvim -n -c "DiffviewOpen" "$MERGE"
-
-[diff]
-    tool = diffview
-
-[difftool "diffview"]
-    cmd = nvim -n -c "DiffviewOpen"
+	defaultBranch = main
 
 [push]
 	autoSetupRemote = true
+
+[pull]
+    rebase = true
 
 [filter "lfs"]
     process = git-lfs filter-process

@@ -1,5 +1,5 @@
-font-size = 15
-font-family = "FiraCode Nerd Font"
-theme = dracula
+font-size = 16
+font-family = IBM Plex Mono
+theme = Atom One Dark
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = shift+enter=text:\n
