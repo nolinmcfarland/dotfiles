@@ -80,8 +80,5 @@ install_homebrew
 brew_install "node"
 brew_install "nvim"
 brew_install "starship"
-brew_install "swiftlint"
-brew_install "swiftformat"
-brew_install "xcode-build-server"
 install_fonts
 echo "🎉 All tools are installed and up to date!"
