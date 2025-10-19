@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+    commit = "61e5109",
 	dependencies = {
 		{ "williamboman/mason.nvim", opts = {} },
 		"williamboman/mason-lspconfig.nvim",
@@ -44,14 +45,21 @@ return {
 			severity_sort = true,
 			float = { border = "rounded", source = "if_many" },
 			underline = { severity = vim.diagnostic.severity.ERROR },
-			signs = vim.g.have_nerd_font and {
+			signs = vim.g.signcolumn_diagnostics and {
 				text = {
-					[vim.diagnostic.severity.ERROR] = "•",--"󰅚 ",
-					[vim.diagnostic.severity.WARN] = "•",--"󰀪 ",
-					[vim.diagnostic.severity.INFO] = "•",--"󰋽 ",
-					[vim.diagnostic.severity.HINT] = "•"--"󰌶 ",
+					[vim.diagnostic.severity.ERROR] = vim.g.diagnostic_symbol.error,
+					[vim.diagnostic.severity.WARN] = vim.g.diagnostic_symbol.warn,
+					[vim.diagnostic.severity.INFO] = vim.g.diagnostic_symbol.info,
+					[vim.diagnostic.severity.HINT] = vim.g.diagnostic_symbol.hint,
 				},
-			} or {},
+			} or {
+				text = {
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.INFO] = "",
+					[vim.diagnostic.severity.HINT] = "",
+				},
+            },
 			virtual_text = {
 				source = "if_many",
 				spacing = 2,

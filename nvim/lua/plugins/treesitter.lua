@@ -6,10 +6,13 @@ return {
 			-- A list of parser names, or "all"
 			ensure_installed = {
 				"c",
+                "diff",
+                "go",
 				"javascript",
-				"typescript",
 				"lua",
+                "python",
 				"swift",
+				"typescript",
 				"vimdoc",
 			},
 
