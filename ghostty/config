@@ -1,5 +1,7 @@
+theme = Modus Viviendi
+
 font-size = 16
 font-family = IBM Plex Mono
-theme = GitHub Dark High Contrast
+
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = shift+enter=text:\n
