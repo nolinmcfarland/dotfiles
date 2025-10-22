@@ -10,7 +10,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.showmode = false
-vim.opt.mouse = "a"
+vim.opt.mouse = ""
 vim.opt.termguicolors = true
 
 vim.opt.hlsearch = true
