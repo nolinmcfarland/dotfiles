@@ -80,5 +80,6 @@ install_homebrew
 brew_install "node"
 brew_install "nvim"
 brew_install "starship"
+brew_install "ripgrep"
 install_fonts
 echo "🎉 All tools are installed and up to date!"
