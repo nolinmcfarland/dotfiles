@@ -1,35 +1,36 @@
-local colorschemes = {
-	github = {
-		source = "projekt0n/github-nvim-theme",
-		name = "github-theme",
-		scheme = "github_dark_high_contrast",
-	},
-	onedark = {
-		source = "navarasu/onedark.nvim",
-		name = "onedark",
-		scheme = "onedark",
-	},
-	nightfox = {
-		source = "EdenEast/nightfox.nvim",
-		name = "nightfox",
-		scheme = "terafox",
-	},
-}
+local function colorscheme(source, theme, config)
+    return {
+        source,
+        lazy = false,
+        priority = 1000,
+        config = function()
+            config()
+            vim.cmd.colorscheme(theme)
+        end,
+    }
+end
 
-local colorscheme = colorschemes.github
-local hide_background = false
+local github = colorscheme(
+    "projekt0n/github-nvim-theme",
+    "github_dark_high_contrast",
+    function()
+        -- No config needed
+    end
+)
 
-return {
-	colorscheme.source,
-	name = colorscheme.name,
-	lazy = false,
-	priority = 1000,
-	config = function()
-		vim.cmd.colorscheme(colorscheme.scheme)
+local modus = colorscheme(
+    "miikanissi/modus-themes.nvim",
+    "modus",
+    function()
+        require("modus-themes").setup({
+            styles = {
+                comments = { italic = false },
+                keywords = { italic = false },
+            },
+            line_nr_column_background = false,
+            sign_column_background = false,
+        })
+    end
+)
 
-		if hide_background then
-			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-		end
-	end,
-}
+return modus

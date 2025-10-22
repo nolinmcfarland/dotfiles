@@ -3,5 +3,3 @@ font-family = IBM Plex Mono
 theme = GitHub Dark High Contrast
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = shift+enter=text:\n
-# background-blur = true
-# background-opacity = 0.9
