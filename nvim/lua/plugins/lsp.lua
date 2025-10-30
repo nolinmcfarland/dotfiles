@@ -95,6 +95,7 @@ return {
 				},
 			},
 			ts_ls = {},
+            rust_analyzer = {},
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})
