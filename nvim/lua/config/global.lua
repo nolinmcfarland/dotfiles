@@ -1,11 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.signcolumn_diagnostics = false
+vim.g.signcolumn_diagnostics = true
 vim.g.diagnostic_symbol = {
-    error = "e",
-    warn = "w",
-    hint = "h",
-    info = "i",
+    error = "E",
+    warn = "W",
+    hint = "H",
+    info = "I",
 }
 

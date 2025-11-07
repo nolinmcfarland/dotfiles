@@ -79,23 +79,34 @@ return {
 
 		local servers = {
             basedpyright = {},
-			clangd = {},
-            gopls = {},
+            clangd = {},
+            gopls = {
+                setting = {
+                    gopls = {
+                        analyses = {
+                            unusedparams = true,
+                        },
+                        staticcheck = true,
+                        gofumpt = true,
+                    },
+                }
+            },
 			lua_ls = {
 				settings = {
 					Lua = {
 						completion = {
 							callSnippet = "Replace",
-						},
-						diagnostics = {
-							globals = { "vim" },
-							disable = { "missing-fields" },
-						},
-					},
-				},
-			},
-			ts_ls = {},
+                        },
+                        diagnostics = {
+                            globals = { "vim" },
+                            disable = { "missing-fields" },
+                        },
+                    },
+                },
+            },
+            ts_ls = {},
             rust_analyzer = {},
+            zls = {},
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})
