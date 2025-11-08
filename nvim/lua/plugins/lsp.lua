@@ -10,16 +10,20 @@ return {
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 			callback = function(event)
 				local map = function(keys, func, desc, mode)
 					mode = mode or "n"
 					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				map("gn", vim.lsp.buf.rename, "[R]e[n]ame")
+                map("gn", vim.lsp.buf.rename, "Re[n]ame")
 
-				map("ga", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
+                map("ga", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
+
+                map("gK", vim.lsp.buf.hover, "Hover Documentation")
+
+                map("gS", vim.lsp.buf.signature_help, "Signature Help")
 
 				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
