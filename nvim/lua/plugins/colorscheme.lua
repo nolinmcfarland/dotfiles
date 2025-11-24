@@ -34,3 +34,4 @@ local modus = colorscheme(
 )
 
 return modus
+

@@ -13,6 +13,7 @@ return {
                 "python",
                 "rust",
 				"swift",
+                "sql",
 				"typescript",
 				"vimdoc",
                 "zig"

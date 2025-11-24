@@ -9,3 +9,5 @@ vim.g.diagnostic_symbol = {
     info = "I",
 }
 
+-- Remap <C-c> delay in SQL files
+vim.g.ftplugin_sql_omni_key = "<C-j>"
