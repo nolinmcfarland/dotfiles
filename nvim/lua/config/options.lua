@@ -6,12 +6,14 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 vim.opt.relativenumber = true
+vim.opt.number = true
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.showmode = false
 vim.opt.mouse = ""
 vim.opt.termguicolors = true
+vim.opt.fillchars = { eob = " " }
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true

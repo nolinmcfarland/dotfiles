@@ -25,7 +25,10 @@ local modus = colorscheme(
         require("modus-themes").setup({
             styles = {
                 comments = { italic = false },
-                keywords = { italic = false },
+                keywords = { 
+                    italic = false,
+                    bold = true
+                },
             },
             line_nr_column_background = false,
             sign_column_background = false,
@@ -34,4 +37,3 @@ local modus = colorscheme(
 )
 
 return modus
-
