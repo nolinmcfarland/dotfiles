@@ -12,7 +12,7 @@ end
 
 local github = colorscheme(
     "projekt0n/github-nvim-theme",
-    "github_dark_high_contrast",
+    "github_dark_default",
     function()
         -- No config needed
     end
@@ -24,7 +24,7 @@ local modus = colorscheme(
     function()
         require("modus-themes").setup({
             styles = {
-                comments = { italic = false },
+                -- comments = { italic = false },
                 keywords = { 
                     italic = false,
                     bold = true
@@ -36,4 +36,19 @@ local modus = colorscheme(
     end
 )
 
-return modus
+local oxocarbon = colorscheme(
+    "nyoom-engineering/oxocarbon.nvim",
+    "oxocarbon",
+    function()
+    end
+)
+
+local material = colorscheme(
+    "marko-cerovac/material.nvim",
+    "material",
+    function()
+        vim.g.material_style = "deep ocean"
+    end
+)
+
+return github
