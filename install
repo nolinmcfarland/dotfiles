@@ -27,25 +27,6 @@ symlink_dotfiles() {
     success "Dotfiles have been symlinked!"
 }
 
-install_fonts() {
-    local font_source_dir="./fonts"
-    local zip tmp_dir font_file
-
-    find "$font_source_dir" -name "*.zip" | while read -r zip; do
-        info "Installing $(basename "$zip" .zip) font..."
-        tmp_dir=$(mktemp -d)
-        unzip -q "$zip" -d "$tmp_dir"
-
-        find "$tmp_dir" -name "*.ttf" | while read -r font_file; do
-            cp -f "$font_file" "$FONTS/"
-        done
-
-        rm -rf "$tmp_dir"
-    done
-
-    success "Fonts have been installed!"
-}
-
 install_homebrew() {
     info "Installing Homebrew..."
 
@@ -73,13 +54,10 @@ brew_install() {
     fi
 }
 
-# Main install flow
-
 symlink_dotfiles
 install_homebrew
 brew_install "node"
 brew_install "nvim"
 brew_install "starship"
 brew_install "ripgrep"
-install_fonts
 echo "🎉 All tools are installed and up to date!"
