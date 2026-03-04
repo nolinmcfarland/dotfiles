@@ -18,37 +18,12 @@ local github = colorscheme(
     end
 )
 
-local modus = colorscheme(
-    "miikanissi/modus-themes.nvim",
-    "modus",
+local embark = colorscheme(
+    "embark-theme/vim",
+    "embark",
     function()
-        require("modus-themes").setup({
-            styles = {
-                -- comments = { italic = false },
-                keywords = { 
-                    italic = false,
-                    bold = true
-                },
-            },
-            line_nr_column_background = false,
-            sign_column_background = false,
-        })
+        -- No config needed
     end
 )
 
-local oxocarbon = colorscheme(
-    "nyoom-engineering/oxocarbon.nvim",
-    "oxocarbon",
-    function()
-    end
-)
-
-local material = colorscheme(
-    "marko-cerovac/material.nvim",
-    "material",
-    function()
-        vim.g.material_style = "deep ocean"
-    end
-)
-
-return github
+return embark
