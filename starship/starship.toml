@@ -7,9 +7,9 @@ vimcmd_symbol = "[←](bold green)"
 tag_symbol = " tag "
 
 [git_status]
-ahead = ">"
-behind = "<"
-diverged = "<>"
+ahead = "↑"
+behind = "↓"
+diverged = "↕"
 renamed = "r"
 deleted = "x"
 
