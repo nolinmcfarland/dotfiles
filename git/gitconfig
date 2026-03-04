@@ -26,30 +26,19 @@
     # Status
     s = status -sb
     
-    # Checkout
-    co = checkout
-    nb = checkout -b
-    go = !sh -c '[[ "$(git branch | grep -i $1 | wc -l)" -eq "1" ]] && git checkout "$(git branch | grep -i $1 | tr -d [:space:])" || echo "\\\"$1\\\" matches zero or multiple branches."' -
+    # Switch
+    sw = switch
+    nb = switch -c
+    go = !sh -c '[[ "$(git branch | grep -i $1 | wc -l)" -eq "1" ]] && git switch "$(git branch | grep -i $1 | tr -d [:space:])" || echo "\\\"$1\\\" matches zero or multiple branches"' -
     
-    # Cherrypick
-    cp = cherry-pick
-
-    # Stash
-    ss = stash save
-    sp = stash pop
-    sl = stash list
-    sa = stash apply
-    sd = stash drop
-
     # Branch
-    b = branch
+    b = branch --sort=-committerdate
     db = branch -D
-    cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard.\""
-    br = for-each-ref --sort=-committerdate refs/heads/ --format='* %(color:green)%(refname:short) %(color:reset)%(subject) %(color:dim blue)(%(authorname), %(committerdate:relative))%(color:reset)'
+    rn = branch -m
+    cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard\""
     mb = !git branch -vv | grep ': gone]' | awk '{print $1}'
-    dmb = "!f() { \
+    sweep = "!f() { \
         auto=false; \
-        git mb; \
         for branch in $(git mb); do \
             if [ \"$auto\" = true ]; then \
                 git db \"$branch\"; \
@@ -62,8 +51,14 @@
                 *) ;; \
             esac; \
         done; \
-        echo \"\nDone and dusted.\"; \
     }; f"
+
+    # Stash
+    ss = stash save
+    sp = stash pop
+    sl = stash list
+    sa = stash apply
+    sd = stash drop
 
     # Add
     a = add
@@ -76,12 +71,15 @@
     ca = commit --amend --no-edit
 
     # Push
-    p = push
-    pf = push --force-with-lease
+    pu = push
+    puf = push --force-with-lease
 
     # Pull
     pl = pull --rebase --autostash
  
+    # Cherrypick
+    cp = cherry-pick
+
     # Rebase
     r = rebase
     ri = rebase --interactive
@@ -91,21 +89,18 @@
 
     # Diff
     d = diff -w
+    ds = diff --staged
     dt = difftool
-    staged = diff --staged
     
     # Merge
     m = merge
     mt = mergetool
 
     # Log
-    l = log --pretty=format:'%C(yellow)%h%C(reset)%C(green)%d%C(reset) %s %C(dim blue)(%an, %cr)%C(reset)' --abbrev-commit --date=relative
-    lg = l --graph
-    ls = l --show-signature
+    l = log --oneline
+    lg = log --oneline --graph
     
     # Misc
-    undo = reset --mixed HEAD~1
+    undo = reset HEAD~1
     unstage = restore --staged
-    fix = !git aa && git commit --fixup HEAD
-    squash = ri --autosquash
     alias = !git config -l | grep alias | cut -c 7-
