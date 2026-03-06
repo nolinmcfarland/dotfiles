@@ -1,7 +1,7 @@
-theme = Embark
+theme = Monokai Pro
 
 font-size = 16
-font-family = Iosveka Term
+font-family = SF Mono
 
 window-padding-x = 8
 

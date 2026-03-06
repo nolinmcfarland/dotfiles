@@ -26,4 +26,24 @@ local embark = colorscheme(
     end
 )
 
-return embark
+local monokai = colorscheme(
+    "loctvl842/monokai-pro.nvim",
+    "monokai-pro",
+    function()
+        require("monokai-pro").setup {
+            -- transparent_background = true,
+            styles = {
+                comment = { italic = false },
+                keyword = { italic = false },
+                type = { italic = false },
+                storageclass = { italic = false },
+                structure = { italic = false },
+                parameter = { italic = false },
+                annotation = { italic = false },
+                tag_attribute = { italic = false },
+            },
+        }
+    end
+)
+
+return monokai
