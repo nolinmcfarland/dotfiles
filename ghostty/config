@@ -2,6 +2,8 @@ theme = Ayu Mirage
 
 font-size = 16
 font-family = SF Mono
+font-style = SemiBold
+adjust-cell-height = 10
 
 window-padding-x = 8
 
