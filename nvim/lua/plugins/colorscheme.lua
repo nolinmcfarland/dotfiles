@@ -46,4 +46,12 @@ local monokai = colorscheme(
     end
 )
 
-return monokai
+local ayu = colorscheme(
+    "Shatur/neovim-ayu",
+    "ayu-mirage",
+    function()
+        -- No config needed
+    end
+)
+
+return ayu
