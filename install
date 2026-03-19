@@ -2,62 +2,48 @@
 
 DOT=$HOME/dotfiles
 CONFIG=$HOME/.config
-FONTS=$HOME/Library/Fonts
+XCODE_THEMES=$HOME/Library/Developer/Xcode/UserData/FontAndColorThemes
 
-info() {
-    echo "👉 $1"
+set -e
+
+step() {
+    printf '\033[1;34m→\033[0m \033[1m%s...\033[0m\n' "$1"
 }
 
-success() {
-    echo "✅ $1"
-}
+trap 'printf "\033[1;31m→ Failed\033[0m\n"' ERR
 
-symlink_dotfiles() {
-    info "Symlinking dotfiles..."
+step "Symlinking dotfiles"
 
-    mkdir -p "$CONFIG"
-    ln -sf "$DOT/ghostty" "$CONFIG"
-    ln -sf "$DOT/nvim" "$CONFIG"
-    ln -sf "$DOT/starship/starship.toml" "$CONFIG/starship.toml"
+mkdir -p "$CONFIG"
+ln -sf "$DOT/ghostty" "$CONFIG"
+ln -sf "$DOT/nvim" "$CONFIG"
+ln -sf "$DOT/starship/starship.toml" "$CONFIG/starship.toml"
 
-    ln -sf "$DOT/zsh/zshrc" "$HOME/.zshrc"
-    ln -sf "$DOT/git/gitconfig" "$HOME/.gitconfig"
-    ln -sf "$DOT/git/gitignore" "$HOME/.gitignore"
+mkdir -p "$CONFIG/zed"
+ln -sf "$DOT/zed/settings.json" "$CONFIG/zed/settings.json"
+ln -sf "$DOT/zed/keymap.json" "$CONFIG/zed/keymap.json"
 
-    success "Dotfiles have been symlinked!"
-}
+mkdir -p "$XCODE_THEMES"
+for theme in "$DOT/xcode/themes/"*.xccolortheme; do
+    ln -sf "$theme" "$XCODE_THEMES/$(basename "$theme")"
+done
 
-install_homebrew() {
-    info "Installing Homebrew..."
+ln -sf "$DOT/zsh/zshrc" "$HOME/.zshrc"
+ln -sf "$DOT/git/gitconfig" "$HOME/.gitconfig"
+ln -sf "$DOT/git/gitignore" "$HOME/.gitignore"
 
-    if ! command -v brew &> /dev/null; then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+step "Installing Homebrew"
 
-        success "Homebrew has been installed!"
-    else
-        success "Homebrew is already installed."
-        brew update
-    fi
-}
+if ! command -v brew &> /dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    brew update -q
+fi
 
-brew_install() {
-    local package=$1
-    info "Installing $package..."
+step "Installing packages"
 
-    if ! command -v "$package" &> /dev/null; then
-        brew install "$package"
-        success "$package has been installed!"
-    else
-        success "$package is already installed."
-    fi
-}
+brew install -q node nvim starship ripgrep delve anomalyco/tap/opencode
 
-symlink_dotfiles
-install_homebrew
-brew_install "node"
-brew_install "nvim"
-brew_install "starship"
-brew_install "ripgrep"
-echo "🎉 All tools are installed and up to date!"
+printf '\033[1;32m→ Done\033[0m\n'

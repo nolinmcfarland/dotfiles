@@ -1,6 +1,6 @@
 [character]
 success_symbol = "[→](bold green)"
-error_symbol = "[x](bold red)"
+error_symbol = "[→](bold red)"
 vimcmd_symbol = "[←](bold green)"
 
 [git_commit]
@@ -14,7 +14,7 @@ renamed = "r"
 deleted = "x"
 
 [aws]
-format = "" # Delete this line to show AWS
+disabled = true
 symbol = "aws "
 
 [azure]
