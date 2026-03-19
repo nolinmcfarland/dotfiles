@@ -1,0 +1,35 @@
+{
+  "disable_ai": true,
+  "vim_mode": true,
+  "vim": {
+    "highlight_on_yank_duration": 200,
+    "toggle_relative_line_numbers": true,
+  },
+  "scrollbar": {
+    "show": "never",
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+  },
+  "tabs": {
+    "file_icons": false,
+    "git_status": true,
+  },
+  "indent_guides": {
+    "enabled": false,
+  },
+  "preferred_line_length": 80,
+  "wrap_guides": [80],
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "buffer_font_family": "SF Mono",
+  "ui_font_size": 16,
+  "buffer_font_size": 16.0,
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Mirage",
+    "dark": "Ayu Mirage",
+  },
+}
