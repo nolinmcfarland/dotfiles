@@ -37,21 +37,6 @@
     rn = branch -m
     cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard\""
     mb = !git branch -vv | grep ': gone]' | awk '{print $1}'
-    sweep = "!f() { \
-        auto=false; \
-        for branch in $(git mb); do \
-            if [ \"$auto\" = true ]; then \
-                git db \"$branch\"; \
-                continue; \
-            fi; \
-            read -p \"\nDelete $branch? (y/N/a) \" ans; \
-            case \"$ans\" in \
-                y|Y) git db \"$branch\" ;; \
-                a|A) auto=true; git db \"$branch\" ;; \
-                *) ;; \
-            esac; \
-        done; \
-    }; f"
 
     # Stash
     ss = stash save

@@ -3,53 +3,24 @@
     "context": "Workspace",
     "bindings": {
       "ctrl-/": "terminal_panel::Toggle",
-      "ctrl-\\": "agent::Toggle",
     },
   },
   {
-    "context": "Dock || Terminal || Editor",
     "bindings": {
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-    },
-  },
-  {
-    "context": "VimControl && vim_mode == normal",
-    "bindings": {
-      "-": "pane::RevealInProjectPanel",
-      "space s f": "file_finder::Toggle",
-      "space s g": "workspace::NewSearch",
-      "space j": ["pane::ActivateItem", 0],
-      "space k": ["pane::ActivateItem", 1],
-      "space l": ["pane::ActivateItem", 2],
-      "space ;": ["pane::ActivateItem", 3],
-      "space u": ["pane::ActivateItem", 4],
-      "space i": ["pane::ActivateItem", 5],
-      "space o": ["pane::ActivateItem", 6],
-      "space p": ["pane::ActivateItem", 7],
-    },
-  },
-  {
-    "context": "ProjectPanel",
-    "bindings": {
-      "space s f": "file_finder::Toggle",
-      "space s g": "workspace::NewSearch",
-      "q": "project_panel::Toggle",
-      "-": "editor::ToggleFocus",
-      "y y": "project_panel::Copy",
-      "p": "project_panel::Paste",
-      "d d": "project_panel::Cut",
-      "c w": "project_panel::Rename",
-      "o": "project_panel::NewFile",
-      "O": "project_panel::NewDirectory",
+      "ctrl-y": "menu::Confirm",
     },
   },
   {
     "context": "Editor && showing_completions",
     "bindings": {
       "ctrl-y": "editor::ConfirmCompletion",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-[": "pane::ActivatePreviousItem",
+      "ctrl-]": "pane::ActivateNextItem",
     },
   },
 ]
