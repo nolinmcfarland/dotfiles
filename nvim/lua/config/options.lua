@@ -27,7 +27,7 @@ vim.opt.splitbelow = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 500
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 3
 vim.opt.breakindent = true
 vim.opt.confirm = true
 
