@@ -11,9 +11,15 @@ return {
         -- <c-k>: Toggle signature help
         keymap = { preset = 'default' },
         appearance = {
-            nerd_font_variant = 'mono'
+            nerd_font_variant = 'mono',
         },
-        completion = { documentation = { auto_show = false } },
+        completion = {
+            documentation = { auto_show = true },
+        },
+        signature = {
+            enabled = true, 
+            window = { show_documentation = true },
+        },
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer' },
         },

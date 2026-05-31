@@ -6,11 +6,12 @@ return {
         require('ayu').setup({
             overrides = {
                 Comment = {
-                    italic = false,
+                    italic = true,
                 },
             },
         })
         vim.cmd.colorscheme('ayu-mirage')
+        vim.o.winborder = "rounded"
     end,
 }
 

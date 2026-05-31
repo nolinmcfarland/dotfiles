@@ -1,11 +1,7 @@
 theme = Ayu Mirage
 
 font-size = 16
-font-style = Medium
 font-family = Lilex
-adjust-cell-height = 9
-
-window-padding-x = 8
 
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = shift+enter=text:\n
