@@ -1,19 +1,17 @@
 return {
     'stevearc/conform.nvim',
-    opts = {
-        formatters_by_ft = {
-            c = { 'clang-format' },
-            go = { 'gofmt' },
-            lua = { 'stylua' },
-            zig = { 'zigfmt' },
-        },
-    },
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            pattern = "*",
-            callback = function(args)
-                require("conform").format({ bufnr = args.buf })
-            end,
+        require('conform').setup({
+            formatters_by_ft = {
+                c = { 'clang-format' },
+                go = { 'gofmt' },
+            },
+            format_on_save = {
+                lsp_fallback = true,
+                async = false,
+                timeout_ms = 500,
+            },
         })
     end,
 }
