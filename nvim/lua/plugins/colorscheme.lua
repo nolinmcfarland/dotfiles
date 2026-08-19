@@ -1,10 +1,9 @@
 return {
-    'Shatur/neovim-ayu',
+    'projekt0n/github-nvim-theme',
     lazy = false,
     priority = 1000,
     config = function()
-        require('ayu').setup({})
-        vim.cmd.colorscheme('ayu')
+        vim.cmd.colorscheme('github_dark_default')
         vim.o.winborder = 'rounded'
     end,
 }

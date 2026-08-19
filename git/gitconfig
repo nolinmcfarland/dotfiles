@@ -3,6 +3,9 @@
     username = nolinmcfarland
 	email = nolin.mcfarland@gmail.com
 
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
 [core]
     editor = nvim
     excludesfile = /Users/nolinmcfarland/.gitignore
