@@ -1,12 +1,11 @@
 # Source local aliases
 source ~/.zshrc_local
 
-# Hush login
-touch ~/.hushlogin
-
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Go tools
+export PATH="$PATH:$HOME/go/bin"
+
 # Starship.rs
 eval "$(starship init zsh)"
-

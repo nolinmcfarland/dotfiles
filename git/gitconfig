@@ -1,6 +1,5 @@
 [user]
     name = Nolin McFarland
-    username = nolinmcfarland
 	email = nolin.mcfarland@gmail.com
 
 [url "git@github.com:"]
@@ -18,12 +17,6 @@
 
 [pull]
     rebase = true
-
-[filter "lfs"]
-    process = git-lfs filter-process
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
 
 [alias]
     # Status

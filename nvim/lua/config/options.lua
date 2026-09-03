@@ -10,10 +10,11 @@ vim.opt.number = true
 vim.opt.colorcolumn = '80'
 vim.opt.cursorline = true
 vim.opt.signcolumn = 'yes'
-vim.opt.showmode = false
+vim.opt.showmode = true
+vim.opt.statusline = ''
+vim.opt.ruler = true
 vim.opt.mouse = ''
 vim.opt.termguicolors = true
-vim.opt.fillchars = { eob = ' ' }
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -38,5 +39,5 @@ vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 
 -- Sync OS and vim clipboard
 vim.schedule(function()
-	vim.opt.clipboard = 'unnamedplus'
+    vim.opt.clipboard = 'unnamedplus'
 end)

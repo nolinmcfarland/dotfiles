@@ -8,4 +8,3 @@ vim.keymap.set('n', '<C-=>', '<C-w>+', { desc = 'Increase split height' })
 vim.keymap.set('n', '<C-->', '<C-w>-', { desc = 'Decrease split height' })
 vim.keymap.set('n', '<C-,>', '<C-w><', { desc = 'Decrease split width' })
 vim.keymap.set('n', '<C-.>', '<C-w>>', { desc = 'Increase split width' })
-

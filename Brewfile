@@ -1,0 +1,7 @@
+brew "go"
+brew "gopls"
+brew "lua-language-server"
+brew "neovim"
+brew "ripgrep"
+brew "starship"
+brew "tree-sitter-cli"

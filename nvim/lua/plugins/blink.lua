@@ -17,7 +17,7 @@ return {
             documentation = { auto_show = true },
         },
         signature = {
-            enabled = true, 
+            enabled = true,
             window = { show_documentation = true },
         },
         sources = {
@@ -27,4 +27,3 @@ return {
     },
     opts_extend = { "sources.default" },
 }
-

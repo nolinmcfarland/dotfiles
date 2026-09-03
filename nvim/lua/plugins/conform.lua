@@ -4,8 +4,7 @@ return {
     config = function()
         require('conform').setup({
             formatters_by_ft = {
-                c = { 'clang-format' },
-                go = { 'gofmt' },
+                go = { 'goimports', 'gofmt' },
             },
             format_on_save = {
                 lsp_fallback = true,
@@ -15,4 +14,3 @@ return {
         })
     end,
 }
-

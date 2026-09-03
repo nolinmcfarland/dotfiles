@@ -1,23 +1,12 @@
 return {
     'neovim/nvim-lspconfig',
+    dependencies = { 'saghen/blink.cmp' },
     config = function()
-        -- Lua
-        vim.lsp.config('lua_ls', {
-            settings = {
-                Lua = {
-                    runtime = {
-                        version = 'LuaJIT',
-                    },
-                    diagnostics = {
-                        globals = { 'vim' },
-                    },
-                },
-            },
-        })
-        vim.lsp.enable('lua_ls')
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         -- Go
         vim.lsp.config('gopls', {
+            capabilities = capabilities,
             settings = {
                 gopls = {
                     analyses = {
@@ -30,11 +19,21 @@ return {
         })
         vim.lsp.enable('gopls')
 
-        -- C
-        vim.lsp.enable('clangd')
-
-        -- Zig
-        vim.lsp.enable('zls')
+        -- Lua
+        vim.lsp.config('lua_ls', {
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    runtime = {
+                        version = 'LuaJIT',
+                    },
+                    diagnostics = {
+                        globals = { 'vim' },
+                    },
+                },
+            },
+        })
+        vim.lsp.enable('lua_ls')
 
         -- Auto-attach LSP with keymaps
         vim.api.nvim_create_autocmd('LspAttach', {
@@ -79,4 +78,3 @@ return {
         })
     end,
 }
-
