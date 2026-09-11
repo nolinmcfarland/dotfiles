@@ -18,6 +18,10 @@ ln -sf "$DOT/ghostty" "$CONFIG"
 ln -sf "$DOT/nvim" "$CONFIG"
 ln -sf "$DOT/starship/starship.toml" "$CONFIG/starship.toml"
 
+mkdir -p "$CONFIG/zed"
+ln -sf "$DOT/zed/settings.json" "$CONFIG/zed/settings.json"
+ln -sf "$DOT/zed/keymap.json" "$CONFIG/zed/keymap.json"
+
 ln -sf "$DOT/zsh/zshrc" "$HOME/.zshrc"
 ln -sf "$DOT/git/gitconfig" "$HOME/.gitconfig"
 ln -sf "$DOT/git/gitignore" "$HOME/.gitignore"

@@ -1,0 +1,49 @@
+{
+  "markdown_preview_font_size": 15.0,
+  "ui_font_size": 15.0,
+  "disable_ai": false,
+  "agent": {
+    "dock": "right"
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+  },
+  "calls": {
+    "mute_on_join": true
+  },
+  "show_whitespaces": "none",
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "enabled": true,
+  },
+  "vim": {
+   "use_smartcase_find": true
+  },
+  "always_treat_brackets_as_autoclosed": true,
+  "auto_signature_help": true,
+  "show_signature_help_after_edits": true,
+  "inlay_hints": {
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_value_hints": true,
+    "enabled": true,
+    "show_background": false,
+  },
+  "vim_mode": true,
+  "project_panel": {
+    "dock": "left",
+  },
+  "preferred_line_length": 80,
+  "wrap_guides": [80],
+  "buffer_font_size": 16,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  }
+}
