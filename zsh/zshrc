@@ -1,6 +1,3 @@
-# Source local aliases
-source ~/.zshrc_local
-
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -9,3 +6,6 @@ export PATH="$PATH:$HOME/go/bin"
 
 # Starship.rs
 eval "$(starship init zsh)"
+
+# Source local aliases
+source ~/.zshrc_local

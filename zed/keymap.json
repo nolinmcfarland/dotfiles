@@ -11,6 +11,7 @@
     "bindings": {
       "ctrl-/": "terminal_panel::Toggle",
       "ctrl-\\": "agent::Toggle",
+      "ctrl-.": "git_panel::Toggle",
     },
   },
   {
