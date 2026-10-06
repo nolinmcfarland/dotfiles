@@ -5,7 +5,7 @@ return {
     build = ':TSUpdate',
     config = function()
         vim.api.nvim_create_autocmd('FileType', {
-            pattern = { 'go', 'lua' },
+            pattern = { 'go', 'lua', 'zig' },
             callback = function()
                 pcall(vim.treesitter.start)
             end,

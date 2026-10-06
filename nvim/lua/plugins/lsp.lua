@@ -35,6 +35,12 @@ return {
         })
         vim.lsp.enable('lua_ls')
 
+        -- Zig
+        vim.lsp.config('zls', {
+            capabilities = capabilities,
+        })
+        vim.lsp.enable('zls')
+
         -- Auto-attach LSP with keymaps
         vim.api.nvim_create_autocmd('LspAttach', {
             group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
