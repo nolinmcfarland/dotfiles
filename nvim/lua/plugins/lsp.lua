@@ -38,6 +38,19 @@ return {
         -- Zig
         vim.lsp.config('zls', {
             capabilities = capabilities,
+            settings = {
+                zls = {
+                    enable_build_on_save = true,
+                },
+            },
+        })
+        vim.g.zig_fmt_parse_errors = 0
+        vim.g.zig_fmt_autosave = 0
+        vim.api.nvim_create_autocmd('BufWritePre', {
+            pattern = { '*.zig', '*.zon' },
+            callback = function(ev)
+                vim.lsp.buf.format()
+            end
         })
         vim.lsp.enable('zls')
 

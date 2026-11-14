@@ -25,14 +25,12 @@
     # Switch
     sw = switch
     nb = switch -c
-    go = !sh -c '[[ "$(git branch | grep -i $1 | wc -l)" -eq "1" ]] && git switch "$(git branch | grep -i $1 | tr -d [:space:])" || echo "\\\"$1\\\" matches zero or multiple branches"' -
     
     # Branch
     b = branch --sort=-committerdate
     db = branch -D
     rn = branch -m
     cb = "!b=$(git rev-parse --abbrev-ref HEAD) && echo \"$b\" | pbcopy && echo \"Copied \\\"$b\\\" to clipboard\""
-    mb = !git branch -vv | grep ': gone]' | awk '{print $1}'
 
     # Stash
     ss = stash save
@@ -84,4 +82,3 @@
     # Misc
     undo = reset HEAD~1
     unstage = restore --staged
-    alias = !git config -l | grep alias | cut -c 7-

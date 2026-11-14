@@ -1,14 +1,9 @@
 return {
-    'Shatur/neovim-ayu',
+    'vcraescu/islands-dark.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-        require('ayu').setup({
-            overrides = {
-                LineNr = { fg = '#5f666d' },
-            },
-        })
-        vim.cmd.colorscheme('ayu')
+        vim.cmd.colorscheme('islands-dark')
         vim.o.winborder = 'rounded'
     end,
 }

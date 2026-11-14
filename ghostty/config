@@ -1,5 +1,5 @@
-theme = Ayu
-font-size = 16
+theme = Jetbrains Islands Dark
+font-size = 15
 font-family = Lilex
 
 keybind = global:ctrl+grave_accent=toggle_quick_terminal

@@ -9,7 +9,10 @@ return {
         -- <c-n>/<c-p>: Select next/previous item
         -- <c-e>: Hide menu
         -- <c-k>: Toggle signature help
-        keymap = { preset = 'default' },
+        keymap = {
+            preset = 'default',
+            ['<CR>'] = { 'accept', 'fallback' },
+        },
         appearance = {
             nerd_font_variant = 'mono',
         },

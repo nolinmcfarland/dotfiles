@@ -7,8 +7,13 @@ export PATH="$PATH:$HOME/go/bin"
 # Starship.rs
 eval "$(starship init zsh)"
 
+# LM Studio
+export PATH="$PATH:$HOME/.lmstudio/bin"
+
 # Source local aliases
 source ~/.zshrc_local
 
 # Mise
-eval "$(/Users/nolinmcfarland/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
+
+
