@@ -15,5 +15,3 @@ source ~/.zshrc_local
 
 # Mise
 eval "$($HOME/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
-
-

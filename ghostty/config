@@ -1,6 +1,7 @@
 theme = Jetbrains Islands Dark
 font-size = 15
 font-family = Lilex
+font-thicken = true
 
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = shift+enter=text:\n
